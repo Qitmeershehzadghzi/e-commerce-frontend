@@ -1,0 +1,97 @@
+// import React from "react";
+// import { NavLink } from "react-router-dom";
+// import { assets } from "../assets/frontend_assets/assets";
+
+// function Navbar() {
+//   return (
+//     <div className="flex items-center justify-between px-6 py-4 bg-white shadow-sm">
+//       <img src={assets.logo} alt="logo" className="h-10" />
+      
+//       <ul className="flex gap-8">
+//         <NavLink
+//           to="/"
+//           className="flex flex-col items-center text-gray-700 transition-colors duration-300 hover:text-blue-600"
+//         >
+//           {({ isActive }) => (
+//             <>
+//               <p className="text-base font-medium">Home</p>
+//               <div
+//                 className={`h-0.5 bg-blue-600 mt-0.5 transition-all duration-300 ease-in-out ${
+//                   isActive ? "w-full" : "w-0"
+//                 }`}
+//               />
+//             </>
+//           )}
+//         </NavLink>
+
+//         <NavLink
+//           to="/collection"
+//           className="flex flex-col items-center text-gray-700 transition-colors duration-300 hover:text-blue-600"
+//         >
+//           {({ isActive }) => (
+//             <>
+//               <p className="text-base font-medium">Collection</p>
+//               <div
+//                 className={`h-0.5 bg-blue-600 mt-0.5 transition-all duration-300 ease-in-out ${
+//                   isActive ? "w-full" : "w-0"
+//                 }`}
+//               />
+//             </>
+//           )}
+//         </NavLink>
+
+//         <NavLink
+//           to="/about"
+//           className="flex flex-col items-center text-gray-700 transition-colors duration-300 hover:text-blue-600"
+//         >
+//           {({ isActive }) => (
+//             <>
+//               <p className="text-base font-medium">About</p>
+//               <div
+//                 className={`h-0.5 bg-blue-600 mt-0.5 transition-all duration-300 ease-in-out ${
+//                   isActive ? "w-full" : "w-0"
+//                 }`}
+//               />
+//             </>
+//           )}
+//         </NavLink>
+
+//         <NavLink
+//           to="/contact"
+//           className="flex flex-col items-center text-gray-700 transition-colors duration-300 hover:text-blue-600"
+//         >
+//           {({ isActive }) => (
+//             <>
+//               <p className="">Contact</p>
+//               <div
+//                 className={`h-0.5 bg-blue-600 mt-0.5 transition-all duration-300 ease-in-out ${
+//                   isActive ? "w-full" : "w-0"
+//                 }`}
+//               />
+//             </>
+//           )}
+//         </NavLink>
+//       </ul>
+      
+//       <div>
+//         <img src={assets.search_icon} alt="search-icon"/>
+//         <div className="relative group">
+//           <img src={assets.profile_icon}  alt="" />
+//           <div>
+//             <div>
+//               <p>My profile</p>
+//               <p>Orders</p>
+//               <p>Logout</p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Navbar;
+
+
+
+
