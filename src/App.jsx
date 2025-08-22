@@ -11,10 +11,12 @@ import Login from './Pages/Login'
 import Orders from './Pages/Orders'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
+import SearchBar from './components/SearchBar/SearchBar'
 export default function App() {
   return (
     <div className='Mian-file'>
       <Navbar />
+      <SearchBar />
       {/* yar sahi se design karo 
 ke width aisa lage ke laptop me dekh rahe hen  width itni kam 
 yar sahi se design karo */}

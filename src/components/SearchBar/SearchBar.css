@@ -1,0 +1,99 @@
+/* ===========================
+   Search Bar Styling
+   =========================== */
+
+.search-bar-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 15px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 0.4s ease;
+}
+
+/* Search Input Box */
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 8px 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-bar:hover {
+  border-color: #007bff;
+  background: #fff;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: #333;
+  padding: 5px 8px;
+}
+
+.image {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  margin-left: 6px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.image:hover {
+  opacity: 1;
+}
+
+/* Cross Button */
+.2nd-image {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.2nd-image:hover {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+
+/* Small Screen Adjustments */
+@media (max-width: 600px) {
+  .search-bar-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .2nd-image {
+    align-self: flex-end;
+  }
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

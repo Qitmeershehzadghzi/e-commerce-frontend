@@ -3,131 +3,128 @@ import './Collection.css';
 import { ShopContext } from '../../context/ShopContext';
 import { assets } from '../../assets/frontend_assets/assets';
 import Title from '../../components/Title/Title';
-import ProductItem from '../../components/productItem/productItem';
+import ProductItem from '../../components/productItem/ProductItem';
 
 function Collection() {
-  const { products } = useContext(ShopContext);
-
+  const { products,search,ShowSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
-  const [filterProduct, setFilterProduct] = useState([]);
+  const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
-  const [sortType, setSortType] = useState('relevant');
+  const [sortType, setSortType] = useState('relavent');
 
-  // Category toggle
-  const toggleFilter = (e) => {
+  useEffect(() => {
+    setFilterProducts(products);
+  }, [products]);
+
+  const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
-      setCategory(category.filter(item => item !== e.target.value));
+      setCategory(category.filter((item) => item !== e.target.value));
     } else {
-      setCategory(prev => [...prev, e.target.value]);
+      setCategory([...category, e.target.value]);
     }
   };
 
-  // SubCategory toggle
   const toggleSubCategory = (e) => {
     if (subCategory.includes(e.target.value)) {
-      setSubCategory(subCategory.filter(item => item !== e.target.value));
+      setSubCategory(subCategory.filter((item) => item !== e.target.value));
     } else {
-      setSubCategory(prev => [...prev, e.target.value]);
+      setSubCategory([...subCategory, e.target.value]);
     }
   };
 
-  // Apply Filter
-  const applyFilter = () => {
-    let productCopy = products.slice();
-
+  const applyFilters = () => {
+    let productsCopy = [...products];
+    if(ShowSearch && search){
+productsCopy = productsCopy.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+    }
     if (category.length > 0) {
-      productCopy = productCopy.filter(item => category.includes(item.category));
+      productsCopy = productsCopy.filter((item) => category.includes(item.category));
     }
-
     if (subCategory.length > 0) {
-      productCopy = productCopy.filter(item => subCategory.includes(item.subCategory));
+      productsCopy = productsCopy.filter((item) => subCategory.includes(item.subCategory));
     }
-
-    setFilterProduct(productCopy);
+    setFilterProducts(productsCopy);
   };
 
-  // Sort Products
-  const sortProduct = () => {
-    let fpCopy = filterProduct.slice();
-
+  const applySort = () => {
+    let fpCopy = [...filterProducts];
     switch (sortType) {
       case 'low-high':
-        fpCopy.sort((a, b) => a.price - b.price);
+        setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
         break;
       case 'high-low':
-        fpCopy.sort((a, b) => b.price - a.price);
+        setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
         break;
       default:
-        applyFilter();
-        return;
+        setFilterProducts(products);
+        break;
     }
-
-    setFilterProduct(fpCopy);
   };
 
-  // Run sorting when sortType changes
   useEffect(() => {
-    sortProduct();
+    applyFilters();
+  }, [category, subCategory, products,search,ShowSearch]);
+
+  useEffect(() => {
+    applySort();
   }, [sortType]);
 
-  // Run filter when category/subCategory changes
-  useEffect(() => {
-    applyFilter();
-  }, [category, subCategory, products]);
-
   return (
-    <div className='collection'>
-      {/* Filter Button for small screen */}
-      <div className='sec-div'>
-        <p onClick={() => setShowFilter(!showFilter)} className='pr-1'>
-          Filter
-          <img
-            src={assets.dropdown_icon}
-            className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`}
-            alt=""
-          />
-        </p>
+    <div className="collection-container">
+      <div className="collection-title">
+        <Title text1="All" text2="Collections" />
+        <img
+          src={assets.dropdown_icon}
+          className={`dropdown-icon sm:hidden ${showFilter ? 'rotate-90' : ''}`}
+          onClick={() => setShowFilter(!showFilter)}
+          alt="toggle filter"
+        />
       </div>
 
-      {/* Filter Options */}
-      <div className={`div-2 ${showFilter ? 'show' : ''}`}>
-        <p className='pr-2'>Categories</p>
-        <div className='catogries'>
-          <p className='cat'><input type="checkbox" value="Men" onChange={toggleFilter} /> Men</p>
-          <p className='cat'><input type="checkbox" value="Women" onChange={toggleFilter} /> Women</p>
-          <p className='cat'><input type="checkbox" value="Kids" onChange={toggleFilter} /> Kids</p>
+      <div className="collection-content">
+        {/* LEFT FILTERS */}
+        <div className={`filters ${showFilter ? 'block' : 'hidden'} sm:block`}>
+          <p className="filter-heading">CATEGORIES</p>
+          <div className="filter-options">
+            <p><input type="checkbox" value="Men" onChange={toggleCategory} /> Men</p>
+            <p><input type="checkbox" value="Women" onChange={toggleCategory} /> Women</p>
+            <p><input type="checkbox" value="Kids" onChange={toggleCategory} /> Kids</p>
+          </div>
+
+          <p className="filter-heading">TYPE</p>
+          <div className="filter-options">
+            <p><input type="checkbox" value="Topwear" onChange={toggleSubCategory} /> Topwear</p>
+            <p><input type="checkbox" value="Bottomwear" onChange={toggleSubCategory} /> Bottomwear</p>
+            <p><input type="checkbox" value="Winterwear" onChange={toggleSubCategory} /> Winterwear</p>
+          </div>
         </div>
 
-        <p className='pr-2'>Type</p>
-        <div className='catogries'>
-          <p className='cat'><input type="checkbox" value="Topwear" onChange={toggleSubCategory} /> Topwear</p>
-          <p className='cat'><input type="checkbox" value="Bottomwear" onChange={toggleSubCategory} /> Bottomwear</p>
-          <p className='cat'><input type="checkbox" value="Winterwear" onChange={toggleSubCategory} /> Winterwear</p>
-        </div>
-      </div>
+        {/* RIGHT PRODUCTS */}
+        <div className="products-section">
+          <div className="sort-bar">
+            <select onChange={(e) => setSortType(e.target.value)}>
+              <option value="relavent">Sort by: Relevant</option>
+              <option value="low-high">Sort by: Low to High</option>
+              <option value="high-low">Sort by: High to Low</option>
+            </select>
+          </div>
 
-      {/* Products Section */}
-      <div className='dv'>
-        <div className='dv-1'>
-          <Title text1={'All'} text2={'Collections'} />
-          <select onChange={(e) => setSortType(e.target.value)} className='sl'>
-            <option value="relevant">Sort by: Relevant</option>
-            <option value="low-high">Sort by: Low-High</option>
-            <option value="high-low">Sort by: High-Low</option>
-          </select>
-        </div>
-
-        <div className='dv-2'>
-          {filterProduct.map((item, index) => (
-            <ProductItem
-              key={item._id || index}
-              name={item.name}
-              id={item._id}
-              price={item.price}
-              image={item.image}
-            />
-          ))}
+          <div className="products-grid">
+            {filterProducts.length > 0 ? (
+              filterProducts.map((item,index) => (
+                <ProductItem
+                  key={index}
+                  id={item._id}
+                  name={item.name}
+                  image={item.image}
+                  price={item.price}
+                />
+              ))
+            ) : (
+              <p>No products found.</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

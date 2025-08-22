@@ -10,6 +10,7 @@ function ProductItem({ id, name, image, price }) {
     <div className="product-card">
       <Link to={`/product/${id}`} className="product-item">
         <div className="product-image">
+          {/* yahan se image[0] hata do */}
           <img src={image[0]} alt={name} className="image" />
         </div>
         <div className="product-info">
