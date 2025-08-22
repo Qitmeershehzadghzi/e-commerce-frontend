@@ -3,13 +3,14 @@ import { Route,Routes } from 'react-router-dom'
 import Home from './Pages/Home'
 import About from './Pages/About'
 import PlaceOrder from './Pages/PlaceOrder'
-import Collection from './Pages/Collection'
+import Collection from './Pages/Collection/Collection'
 import Contact from './Pages/Contact'
 import Product from './Pages/Product'
 import Cart from './Pages/Cart'
 import Login from './Pages/Login'
 import Orders from './Pages/Orders'
 import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
 export default function App() {
   return (
     <div className='Mian-file'>
@@ -28,6 +29,7 @@ yar sahi se design karo */}
 <Route path='/place-order' element={<PlaceOrder />}/>
 <Route path='/orders' element={<Orders />}/>
       </Routes>
+      <Footer />
     </div>
   )
 }

@@ -26,10 +26,10 @@ function BestSeller() {
         {BestSellers.map((item, index) => (
           <ProductItem
             key={index}
-            id={item._id}
-            image={item.image}
             name={item.name}
             price={item.price}
+            id={item._id}
+            image={item.image}
           />
         ))}
       </div>
