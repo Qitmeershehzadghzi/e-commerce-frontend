@@ -6,7 +6,7 @@ import { ShopContext } from "../../context/ShopContext";
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch } = useContext(ShopContext); // ✅ corrected
+  const { setShowSearch ,getCartDta} = useContext(ShopContext); // ✅ corrected
 
   return (
     <div className="navbar-container">
@@ -81,7 +81,7 @@ function Navbar() {
         {/* Cart */}
         <Link to="/cart" className="navbar-cart-link">
           <img src={assets.cart_icon} alt="cart" className="navbar-cart" />
-          <span className="cart-count">0</span>
+          <span className="cart-count">{getCartDta()}</span>
         </Link>
 
         {/* Mobile Menu Button */}

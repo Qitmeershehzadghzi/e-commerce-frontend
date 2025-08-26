@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../../context/ShopContext';
 import Title from '../Title/Title';
-import ProductItem from '../productItem/productItem';
+import ProductItem from '../ProductItem/ProductItem'; // fixed casing
 import "./ShopCollection.css";
 
 function ShopCollection() {
   const { products } = useContext(ShopContext);
-  const [LatestCollection, setLatestCollection] = useState([]);
+  const [latestCollection, setLatestCollection] = useState([]); // camelCase
 
   useEffect(() => {
-    setLatestCollection(products.slice(0, 10));
+    if (products.length > 0) {
+      setLatestCollection(products.slice(0, 10));
+    }
   }, [products]);
 
   return (
@@ -22,7 +24,7 @@ function ShopCollection() {
       </div>
 
       <div className='collect'>
-        {LatestCollection.map((item, index) => (
+        {latestCollection.map((item, index) => (
           <ProductItem
             key={index}
             id={item._id}

@@ -6,15 +6,18 @@ import PlaceOrder from './Pages/PlaceOrder'
 import Collection from './Pages/Collection/Collection'
 import Contact from './Pages/Contact'
 import Product from './Pages/Products/Product'
-import Cart from './Pages/Cart'
+import Cart from './Pages/Cart/Cart'
 import Login from './Pages/Login'
 import Orders from './Pages/Orders'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import SearchBar from './components/SearchBar/SearchBar'
+  import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
   return (
     <div className='Mian-file'>
+      <ToastContainer />
       <Navbar />
       <SearchBar />
       {/* yar sahi se design karo 

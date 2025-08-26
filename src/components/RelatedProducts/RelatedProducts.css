@@ -1,0 +1,109 @@
+/* RelatedProducts.css */
+.related-products {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+  margin: 40px 0;
+}
+
+.related-products-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.related-products-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .related-products-items {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .related-products {
+    padding: 40px 0;
+  }
+  
+  .related-products-items {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .related-products-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Animation for when products load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.related-products-items > * {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Hover effects for product items */
+.related-products-items .product-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.related-products-items .product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Section title styling */
+.related-products .title-component {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.related-products .title-component h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: -0.5px;
+}
+
+.related-products .title-component span:first-child {
+  color: #3498db;
+}
+
+.related-products .title-component span:last-child {
+  color: #e74c3c;
+}
+
+/* Empty state styling */
+.related-products-items:empty::after {
+  content: "No related products found";
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 40px 0;
+  color: #7f8c8d;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
