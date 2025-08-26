@@ -2,9 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import { ShopContext } from '../../context/ShopContext';
 import Title from '../../components/Title/Title';
 import './Cart.css';
+import { assets } from '../../assets/frontend_assets/assets';
+import CartTotal from '../../components/CartTotal/CartTotal';
 
 function Cart() {
-  const { products, currency, cartItems } = useContext(ShopContext);
+  const { products, currency, cartItems ,updateQuantity,navigate} = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -42,16 +44,29 @@ function Cart() {
                 <div className='div-5'>
                   <img src={data.image[0]} className='image' alt={data.name} />
                 </div>
+                <div>
                 <p className='pppp'>{data.name}</p>
                 <p className='pppp'>Size: {item.size}</p>
-                <p className='pppp'>Qty: {item.quantity}</p>
-                <p className='pppp'>Price: {currency} {data.price * item.quantity}</p>
+                {/* <p className='pppp'>Qty: {item.quantity}</p> */}
+                <input onChange={(e)=>e.target.value === '0'|| e.target.value === '0' ?null:updateQuantity(item._id,item.size,Number(e.target.value))} type="number" min={1} defaultValue={item.quantity} />
+                <p className='pppp'>Price: {currency} {data.price *item.quantity }</p>
+                </div>
+                <img onClick={()=>updateQuantity(item._id,item.size)} src={assets.bin_icon} className='bin' alt="" />
               </div>
+
             );
           })
         ) : (
           <p className='empty-cart'>Your cart is empty</p>
         )}
+      </div>
+      <div className='div-6'>
+<div className='div-7'>
+  <CartTotal />
+  <div className='div-8'>
+<button onClick={()=>navigate('/place-order')} className='check'>PROCEED TO CHECKOUT</button>
+  </div>
+</div>
       </div>
     </div>
   );

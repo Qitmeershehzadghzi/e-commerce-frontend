@@ -1,0 +1,172 @@
+.div-1 {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Left side styles */
+.div-2 {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+}
+
+.div-3 {
+  margin-bottom: 25px;
+}
+
+.div-4, .div-5, .div-6 {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Input field styles */
+.inp, .inp-1, .inp-2, .inp-3, .inp-4, .inp-5, .inp-6, .inp-7 {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: #fafafa;
+}
+
+.inp:focus, .inp-1:focus, .inp-2:focus, .inp-3:focus, 
+.inp-4:focus, .inp-5:focus, .inp-6:focus, .inp-7:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  background-color: white;
+}
+
+/* Right side styles */
+.div-7 {
+  flex: 0 0 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.div-8 {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+}
+
+.div-9 {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+}
+
+.div-10 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.div-11 {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 2px solid #e8e8e8;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.div-11:hover {
+  border-color: #c5d9f1;
+  background-color: #f8fafd;
+}
+
+/* Selected payment method */
+.div-11[style*="background-color"] {
+  border-color: #4a90e2;
+  background-color: #f0f7ff;
+}
+
+.p-1 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  margin-right: 15px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Selected state indicator */
+.div-11[style*="background-color"] .p-1 {
+  border-color: #4a90e2;
+  background-color: #4a90e2;
+}
+
+.div-11[style*="background-color"] .p-1::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.img-1 {
+  height: 24px;
+  object-fit: contain;
+}
+
+.p-2 {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 968px) {
+  .div-1 {
+    flex-direction: column;
+  }
+  
+  .div-7 {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .div-4, .div-5, .div-6 {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .div-1 {
+    padding: 15px;
+  }
+  
+  .div-2, .div-8, .div-9 {
+    padding: 20px;
+  }
+}
+
+/* Enhance the Title component appearance */
+.Title {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Improve CartTotal appearance */
+.CartTotal {
+  font-weight: 500;
+}
