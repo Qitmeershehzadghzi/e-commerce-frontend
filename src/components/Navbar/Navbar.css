@@ -1,103 +1,75 @@
-/* Navbar Container */
 .navbar-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  padding: 15px 25px;
+  background: white;
+  border-bottom: 1px solid #eee;
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: all 0.3s ease;
 }
 
-/* Logo */
 .navbar-logo {
-  height: 40px;
-  width: auto;
+  width: 140px;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
-.navbar-logo:hover {
-  transform: scale(1.05);
-}
-
-/* Desktop Navigation Links */
+/* Links */
 .navbar-links {
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  gap: 25px;
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .navbar-link {
   text-decoration: none;
-  color: inherit;
+  color: #333;
   position: relative;
-  padding: 0.5rem 0;
-  transition: all 0.3s ease;
 }
 
 .navbar-text {
-  margin: 0;
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 500;
-  color: #333;
-  transition: color 0.3s ease;
 }
 
-.navbar-link:hover .navbar-text {
-  color: #007bff;
-}
-
-/* Active Link Underline */
 .navbar-underline {
   height: 2px;
-  background-color: #007bff;
-  margin-top: 4px;
-  border-radius: 1px;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  transform-origin: center;
+  background: transparent;
+  transition: 0.3s;
+  width: 100%;
 }
 
 .navbar-underline.active {
-  transform: scaleX(1);
+  background: #333;
 }
 
-.navbar-link:hover .navbar-underline {
-  transform: scaleX(1);
-  background-color: #0056b3;
-}
-
-/* Icons Section */
+/* Icons */
 .navbar-icons {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 15px;
 }
 
 .navbar-search,
 .profile-icon,
 .navbar-cart,
 .navbar-menu {
-  height: 20px;
-  width: 20px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  opacity: 0.8;
 }
 
-.navbar-search:hover,
-.profile-icon:hover,
-.navbar-cart:hover,
-.navbar-menu:hover {
-  opacity: 1;
-  transform: scale(1.1);
+/* Cart Count */
+.cart-count {
+  background: red;
+  color: white;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 2px 6px;
+  position: absolute;
+  top: -6px;
+  right: -8px;
 }
 
 /* Profile Dropdown */
@@ -107,203 +79,76 @@
 
 .profile-dropdown {
   position: absolute;
-  top: 100%;
+  top: 30px;
   right: 0;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 0.5rem 0;
-  min-width: 150px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 1001;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  display: none;
+  flex-direction: column;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .navbar-profile:hover .profile-dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  display: flex;
 }
 
 .dropdown-item {
-  padding: 0.75rem 1rem;
-  margin: 0;
+  font-size: 14px;
+  padding: 5px 0;
   cursor: pointer;
-  font-size: 0.9rem;
-  color: #333;
-  transition: background-color 0.2s ease;
 }
 
 .dropdown-item:hover {
-  background-color: #f8f9fa;
-  color: #007bff;
+  color: #000;
 }
 
-/* Cart Link */
-.navbar-cart-link {
-  position: relative;
-  text-decoration: none;
-}
-
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background-color: #dc3545;
-  color: white;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: bold;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Mobile Menu Button */
+/* Mobile Menu */
 .navbar-menu {
   display: none;
 }
 
-/* Mobile Menu */
 .navbar-mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 300px;
-  height: 100vh;
-  background-color: #ffffff;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease;
-  z-index: 1002;
-  padding: 2rem 0;
+  display: none;
 }
 
 .navbar-mobile-menu.active {
-  right: 0;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  width: 70%;
+  height: 100%;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  z-index: 999;
 }
 
 .mobile-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0 2rem 2rem 2rem;
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 2rem;
-}
-
-.mobile-header img {
-  height: 16px;
-  width: 16px;
-  cursor: pointer;
-  transform: rotate(180deg);
-}
-
-.mobile-header p {
-  margin: 0;
-  font-weight: 500;
-  color: #333;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .mobile-links {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .mobile-links li {
-  border-bottom: 1px solid #f0f0f0;
+  margin: 12px 0;
+  font-size: 16px;
 }
 
-.mobile-links li:last-child {
-  border-bottom: none;
-}
-
-.mobile-links a {
-  display: block;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  color: #333;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.mobile-links a:hover {
-  background-color: #f8f9fa;
-  color: #007bff;
-  padding-left: 2.5rem;
-}
-
-/* Mobile Overlay */
-.navbar-mobile-menu.active::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .navbar-container {
-    padding: 1rem;
-  }
-  
   .navbar-links {
     display: none;
   }
-  
   .navbar-menu {
     display: block;
-  }
-  
-  .navbar-icons {
-    gap: 1rem;
-  }
-  
-  .navbar-logo {
-    height: 35px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar-container {
-    padding: 0.75rem;
-  }
-  
-  .navbar-icons {
-    gap: 0.75rem;
-  }
-  
-  .navbar-search,
-  .profile-icon,
-  .navbar-cart,
-  .navbar-menu {
-    height: 18px;
-    width: 18px;
-  }
-  
-  .navbar-mobile-menu {
-    width: 250px;
   }
 }

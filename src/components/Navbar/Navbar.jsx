@@ -66,11 +66,14 @@ function Navbar() {
 
         {/* Profile */}
         <div className="navbar-profile">
-          <img
+          <Link to='/login'>
+            <img
             src={assets.profile_icon}
             alt="profile"
             className="profile-icon"
           />
+          </Link>
+        
           <div className="profile-dropdown">
             <p className="dropdown-item">My Profile</p>
             <p className="dropdown-item">Orders</p>

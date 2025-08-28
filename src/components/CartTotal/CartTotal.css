@@ -1,0 +1,38 @@
+.cart-total {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.cart-total-div {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cart-total-div-2 {
+  font-size: 15px;
+  color: #333;
+}
+
+.cart-total-div-3,
+.cart-total-div-4,
+.cart-total-div-5 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.cart-total-div-5 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 8px 0;
+}

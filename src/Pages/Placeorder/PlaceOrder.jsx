@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Title from '../../components/Title/Title'
 import CartTotal from '../../components/CartTotal/CartTotal'
 import { assets } from '../../assets/frontend_assets/assets'
 import './Placeorder.css';
-
+import { ShopContext } from '../../context/ShopContext'
 
 function PlaceOrder() {
+  const {navigate}=useContext(ShopContext)
   const [method,setMethod]=useState('cod')
   return (
     <div className='div-1'>
@@ -42,17 +43,20 @@ function PlaceOrder() {
 {/* Payment method selection */}
 <div className='div-10'>
 <div onClick={()=>setMethod('stripe')} className='div-11'>
-<p className='p-1'></p>
+<p className={`p-1 ${method === 'stripe'? 'bg-green-400':''}`}></p>
 <img src={assets.stripe_logo} className='img-1' alt="" />
 </div>
 <div onClick={()=>setMethod('razorpay')} className='div-11'>
-<p className='p-1'></p>
+<p className={`p-11 ${method === 'razorpay'? 'bg-green-400':''}`}></p>
 <img src={assets.razorpay_logo} className='img-1' alt="" />
 </div>
 <div onClick={()=>setMethod('cod')} className='div-11'>
-<p className='p-1'></p>
+<p className={`p-1 ${method === 'cod'? 'bg-green-400':''}`}></p>
 <p className='p-2'>CASH ON DELIVERY</p>
 </div>
+</div>
+<div className='div-13'>
+<button onClick={()=>navigate('/orders')} className='bbbut'>PLACE ORDER</button>
 </div>
 </div>
       </div>

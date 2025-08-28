@@ -16,7 +16,7 @@ function Hero() {
 <p className='para3'></p>
         </div>
       </div>
-      <img className='image' src={assets.hero_img} alt="" />
+      <img className='image-111' src={assets.hero_img} alt="" />
     </div>
   )
 }
