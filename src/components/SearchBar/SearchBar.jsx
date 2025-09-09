@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../../context/ShopContext'
-import './SearchBar.css'
+// import './SearchBar.css'
 import { assets } from '../../assets/frontend_assets/assets'
 import { useLocation } from 'react-router-dom'
 
@@ -18,21 +18,21 @@ const SearchBar = () => {
   }, [location, ShowSearch]) // 👈 ShowSearch bhi add kiya
 
   return ShowSearch || visible ? (
-    <div className='search-bar-container'>
-      <div className='search-bar'>
+    <div className='search-bar-container flex items-center justify-between bg-gray-900 px-6 py-4 rounded-xl shadow-lg'>
+      <div className='search-bar flex items-center bg-gray-800 px-4 py-2 rounded-full w-full'>
         <input
           type="text"
-          placeholder='search'
-          className='input'
+          placeholder='Search'
+          className='input bg-transparent text-white placeholder-gray-400 outline-none flex-grow px-2'
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <img src={assets.search_icon} className='image' alt="search" />
+        <img src={assets.search_icon} className='image w-6 h-6 cursor-pointer' alt="search" />
       </div>
       <img
         onClick={() => setShowSearch(false)}
         src={assets.cross_icon}
-        className='2nd-image'
+        className='2nd-image w-6 h-6 ml-4 cursor-pointer hover:rotate-90 transition-transform duration-300'
         alt="close"
       />
     </div>

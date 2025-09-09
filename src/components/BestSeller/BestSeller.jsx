@@ -29,7 +29,7 @@ function BestSeller() {
             name={item.name}
             price={item.price}
             id={item._id}
-            image={item.image}
+            image={item.images[0]}
           />
         ))}
       </div>

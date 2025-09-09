@@ -42,7 +42,7 @@ function Cart() {
             return (
               <div className='div-4' key={index}>
                 <div className='div-5'>
-                  <img src={data.image[0]} className='image' alt={data.name} />
+                  <img src={data.images[0]} className='image' alt={data.name} />
                 </div>
                 <div>
                 <p className='pppp'>{data.name}</p>

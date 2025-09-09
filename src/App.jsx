@@ -13,7 +13,7 @@ import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import SearchBar from './components/SearchBar/SearchBar'
   import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+ import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
   return (
     <div className='Mian-file'>

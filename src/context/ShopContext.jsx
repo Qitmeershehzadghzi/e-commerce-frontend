@@ -1,22 +1,30 @@
 import { createContext, useEffect, useState } from "react";
-import { products } from '../assets/frontend_assets/assets';
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  const currency = 'PKR';
+  const currency = "PKR";
   const delivery_fee = 150;
-  const [search, setSearch] = useState('');
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+// console.log("Backend URL:", backendUrl); // should print full API URL
+
+
+  
+  const [search, setSearch] = useState("");
   const [ShowSearch, setShowSearch] = useState(false);
   const [cartItems, setCartitems] = useState({});
+  const [products, setproducts] = useState([]);
+  const [token,settoken]=useState('')
   const navigate = useNavigate();
 
-  const addToCart = async (itemId, size) => {
-    if(!size){
-toast.error("Please select a size");
-return  
+  // ➕ Add item to cart
+  const addToCart = (itemId, size) => {
+    if (!size) {
+      toast.error("Please select a size");
+      return;
     }
     const cartDat = structuredClone(cartItems);
 
@@ -34,41 +42,70 @@ return
     setCartitems(cartDat);
   };
 
-const getCartDta =()=>{
-  let totalCount =0;
-  for(const items in cartItems){
-    for(const item in cartItems[items]){
-try {
-  if(cartItems[items][item]){
-    totalCount += cartItems[items][item]
-  }
-} catch (error) {
-  
-}    }
-  }
-  return totalCount;
-}
-const updateQuantity =async(itemId,size,quantity)=>{
-let update =structuredClone(cartItems);
-update[itemId][size] =quantity;
-setCartitems(update);
-}
-const getCardAmount =()=>{
-  let TotlaAmount =0
-  for(const items in cartItems){
-  let itemInfo = products.find(product=>product._id === items)
-  for (const item in cartItems[items]){
+  // ➕ Get total items in cart
+  const getCartDta = () => {
+    let totalCount = 0;
+    for (const items in cartItems) {
+      for (const item in cartItems[items]) {
+        try {
+          if (cartItems[items][item]) totalCount += cartItems[items][item];
+        } catch (error) {}
+      }
+    }
+    return totalCount;
+  };
+
+  // ➕ Update item quantity
+  const updateQuantity = (itemId, size, quantity) => {
+    let update = structuredClone(cartItems);
+    update[itemId][size] = quantity;
+    setCartitems(update);
+  };
+
+  // ➕ Get total cart amount
+  const getCardAmount = () => {
+    let TotlaAmount = 0;
+    for (const items in cartItems) {
+      const itemInfo = products.find((p) => p._id === items);
+      if (!itemInfo) continue;
+      for (const item in cartItems[items]) {
+        try {
+          if (cartItems[items][item] > 0) {
+            TotlaAmount += cartItems[items][item] * itemInfo.price;
+          }
+        } catch (error) {}
+      }
+    }
+    return TotlaAmount;
+  };
+
+  // ✅ Fetch products from backend
+  const getProductsData = async () => {
     try {
-      if(cartItems[items][item]>0){
-TotlaAmount += cartItems[items][item] * itemInfo.price
+      const response = await axios.get(backendUrl +'/product/list');
+
+      // console.log("Products from backend:", response.data);
+
+      if (response.data.success) {
+        setproducts(response.data.productss); // use correct state
+      } else {
+        toast.error(response.data.message);
       }
     } catch (error) {
-      
+      console.log(error);
+      toast.error(error.message);
     }
-  }
-  }
-  return TotlaAmount;
+  };
+
+  useEffect(() => {
+    getProductsData();
+  }, []);
+
+  useEffect(()=>{
+if (!token && localStorage.getItem('token')) {
+  settoken(localStorage.getItem('token'))
 }
+  },[])
 
   const value = {
     products,
@@ -81,8 +118,12 @@ TotlaAmount += cartItems[items][item] * itemInfo.price
     setShowSearch,
     updateQuantity,
     navigate,
+    backendUrl,
+    settoken,
+    token,
     cartItems,
-    addToCart, // ✅ now included in context
+    setCartitems,
+    addToCart,
     getCartDta,
   };
 
