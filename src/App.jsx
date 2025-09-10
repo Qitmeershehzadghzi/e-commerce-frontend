@@ -12,6 +12,8 @@ import Orders from './Pages/Orders/Orders'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import SearchBar from './components/SearchBar/SearchBar'
+import Register from './Pages/register/register'
+
   import { ToastContainer, toast } from 'react-toastify';
  import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
@@ -26,6 +28,7 @@ yar sahi se design karo */}
       <Routes>
 <Route path='/' element={<Home />}/>
 <Route path='/login' element={<Login />}/>
+<Route path='/signup' element={<Register />}/>
 <Route path='/about' element={<About />}/>
 <Route path='/collection' element={<Collection />}/>
 <Route path='/contact' element={<Contact />}/>

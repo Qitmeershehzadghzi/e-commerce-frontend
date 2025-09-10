@@ -8,16 +8,13 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const currency = "PKR";
   const delivery_fee = 150;
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
-// console.log("Backend URL:", backendUrl); // should print full API URL
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-
-  
   const [search, setSearch] = useState("");
   const [ShowSearch, setShowSearch] = useState(false);
   const [cartItems, setCartitems] = useState({});
   const [products, setproducts] = useState([]);
-  const [token,settoken]=useState('')
+  const [token, settoken] = useState("");
   const navigate = useNavigate();
 
   // ➕ Add item to cart
@@ -40,6 +37,18 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
     }
 
     setCartitems(cartDat);
+    if (token) {
+      try {
+        axios.post(
+          backendUrl + "/cart/add",
+          { itemId, size },
+          { headers: { token } }
+        );
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
   };
 
   // ➕ Get total items in cart
@@ -56,10 +65,22 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
   };
 
   // ➕ Update item quantity
-  const updateQuantity = (itemId, size, quantity) => {
+  const updateQuantity = async (itemId, size, quantity) => {
     let update = structuredClone(cartItems);
     update[itemId][size] = quantity;
     setCartitems(update);
+    if (token) {
+      try {
+        await axios.post(
+          backendUrl + "/cart/update",
+          { itemId, size, quantity },
+          { headers: { token } }
+        );
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
   };
 
   // ➕ Get total cart amount
@@ -82,12 +103,30 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
   // ✅ Fetch products from backend
   const getProductsData = async () => {
     try {
-      const response = await axios.get(backendUrl +'/product/list');
-
-      // console.log("Products from backend:", response.data);
+      const response = await axios.get(backendUrl + "/product/list");
 
       if (response.data.success) {
-        setproducts(response.data.productss); // use correct state
+        setproducts(response.data.productss); // ✅ spelling fix
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  // ✅ Fetch user cart
+  const getUserCart = async (token) => {
+    try {
+      const response = await axios.post(
+        backendUrl + "/cart/get",
+        {},
+        { headers: { token } }
+      );
+
+      if (response.data.success) {
+        setCartitems(response.data.cartData); // ✅ spelling fix
       } else {
         toast.error(response.data.message);
       }
@@ -101,11 +140,12 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
     getProductsData();
   }, []);
 
-  useEffect(()=>{
-if (!token && localStorage.getItem('token')) {
-  settoken(localStorage.getItem('token'))
-}
-  },[])
+  useEffect(() => {
+    if (!token && localStorage.getItem("token")) {
+      settoken(localStorage.getItem("token"));
+      getUserCart(localStorage.getItem("token"));
+    }
+  }, []);
 
   const value = {
     products,

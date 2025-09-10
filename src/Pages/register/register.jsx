@@ -1,29 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Login.css";
+import "./register.css";
 import { ShopContext } from "../../context/ShopContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function Login() {
-  const { navigate, token, settoken, backendUrl } = useContext(ShopContext);
+function Signup() {
+  const { navigate, backendUrl } = useContext(ShopContext);
 
+  const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(backendUrl + "/user/login", {
+      const response = await axios.post(backendUrl + "/user/register", {
+        name,
         email,
         password,
       });
 
       if (response.data.success) {
-        const receivedToken = response.data.token || response.data.Token;
-        settoken(receivedToken);
-        localStorage.setItem("token", receivedToken);
+        toast.success("Signup successful! Please login.");
+        navigate("/login");   // ✅ direct login page pe bhej do
       } else {
-        toast.error(response.data.message || response.data.msg);
+        toast.error(response.data.msg || "User already exists");
       }
     } catch (error) {
       console.error(error);
@@ -31,18 +32,21 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      navigate("/");
-    }
-  }, [token]);
-
   return (
     <form onSubmit={onSubmitHandler} className="form-1">
       <div className="div-1">
-        <p className="p-1">Login</p>
+        <p className="p-1">Sign Up</p>
         <hr />
       </div>
+
+      <input
+        onChange={(e) => setname(e.target.value)}
+        value={name}
+        type="text"
+        placeholder="Name"
+        className="input-1"
+        required
+      />
 
       <input
         onChange={(e) => setemail(e.target.value)}
@@ -62,14 +66,9 @@ function Login() {
         required
       />
 
-      <div className="div-2">
-        <p className="p-2">FORGOT YOUR PASSWORD</p>
-        <p onClick={() => navigate('/signup')}>create new account</p>
-      </div>
-
-      <button className="bt-3" type="submit">Login</button>
+      <button className="bt-3" type="submit">Sign Up</button>
     </form>
   );
 }
 
-export default Login;
+export default Signup;
