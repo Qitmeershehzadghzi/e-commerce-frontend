@@ -199,7 +199,7 @@ console.log(orderData);
                   <p className="p-6"></p>
                   <p className="p-7">{itm.status}</p>
                 </div>
-                <button className="buuttt">Track order</button>
+                <button onClick={loadOrderData} className="buuttt">Track order</button>
               </div>
             </div>
           ))
