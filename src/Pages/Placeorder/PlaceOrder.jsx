@@ -64,10 +64,23 @@ function PlaceOrder() {
           } else {
             toast.error(response.data.message)
           }
-          break
+        case 'stripe':
+  const responseStripe = await axios.post(
+    backendUrl + '/order/stripe',
+    {
+      ...orderData,
+      origin: window.location.origin  // ✅ add origin here
+    },
+    { headers: { token } }
+  )
 
-        default:
-          break
+  if (responseStripe.data.success) {
+    window.location.replace(responseStripe.data.session_url)  // ✅ correct key
+  } else {
+    toast.error(responseStripe.data.message)
+  }
+  break
+
       }
 
     } catch (error) {
