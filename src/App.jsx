@@ -13,6 +13,7 @@ import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import SearchBar from './components/SearchBar/SearchBar'
 import Register from './Pages/register/register'
+import Verify from './Pages/verify.jsx'
 
   import { ToastContainer, toast } from 'react-toastify';
  import 'react-toastify/dist/ReactToastify.css';
@@ -36,6 +37,7 @@ yar sahi se design karo */}
 <Route path='/cart' element={<Cart />}/>
 <Route path='/place-order' element={<PlaceOrder />}/>
 <Route path='/orders' element={<Orders />}/>
+<Route path='/verify' element={<Verify />}/>
       </Routes>
       <Footer />
     </div>

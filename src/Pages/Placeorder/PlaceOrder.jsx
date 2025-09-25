@@ -64,6 +64,7 @@ function PlaceOrder() {
           } else {
             toast.error(response.data.message)
           }
+          break
         case 'stripe':
   const responseStripe = await axios.post(
     backendUrl + '/order/stripe',
@@ -125,10 +126,10 @@ function PlaceOrder() {
               <p className={`p-1 ${method === 'stripe' ? 'bg-green-400' : ''}`}></p>
               <img src={assets.stripe_logo} className='img-1' alt="" />
             </div>
-            <div onClick={() => setMethod('razorpay')} className='div-11'>
+            {/* <div onClick={() => setMethod('razorpay')} className='div-11'>
               <p className={`p-1 ${method === 'razorpay' ? 'bg-green-400' : ''}`}></p>
               <img src={assets.razorpay_logo} className='img-1' alt="" />
-            </div>
+            </div> */}
             <div onClick={() => setMethod('cod')} className='div-11'>
               <p className={`p-1 ${method === 'cod' ? 'bg-green-400' : ''}`}></p>
               <p className='p-2'>CASH ON DELIVERY</p>
