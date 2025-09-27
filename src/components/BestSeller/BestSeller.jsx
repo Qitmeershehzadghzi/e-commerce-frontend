@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../../context/ShopContext';
 import Title from '../Title/Title';
-import "./BestSeller.css";
-import ProductItem from '../productItem/productItem';
+import ProductItem from '../productItem/productItem.jsx';
 
 function BestSeller() {
   const { products } = useContext(ShopContext);
@@ -10,27 +9,33 @@ function BestSeller() {
 
   useEffect(() => {
     const bestSellers = products.filter(product => product.bestseller);
-    setBestSellers(bestSellers.slice(0, 5)); 
-  }, [products]); // dependency added
+    setBestSellers(bestSellers.slice(0, 5));
+  }, [products]);
 
   return (
-    <div className='main-container'>
-      <div className='sec-div'>
+    <div className="w-full px-4 md:px-10 lg:px-20 py-12 bg-gradient-to-b from-gray-50 via-white to-gray-100">
+      {/* Heading Section */}
+      <div className="text-center mb-10">
         <Title text1={'Best'} text2={'Sellers'} />
-        <p className='para'>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni iure soluta assumenda!
+        <p className="text-gray-500 max-w-2xl mx-auto mt-3 text-sm md:text-base">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni iure soluta assumenda!
         </p>
       </div>
 
-      <div className='collect'>
+      {/* Product Grid */}
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 place-items-center">
         {BestSellers.map((item, index) => (
-          <ProductItem
+          <div
             key={index}
-            name={item.name}
-            price={item.price}
-            id={item._id}
-            image={item.images[0]}
-          />
+            className="w-full max-w-xs transform transition duration-500 hover:scale-105 hover:shadow-2xl bg-white rounded-xl p-4 animate-fadeIn"
+          >
+            <ProductItem
+              name={item.name}
+              price={item.price}
+              id={item._id}
+              image={item.images[0]}
+            />
+          </div>
         ))}
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { ShopContext } from '../../context/ShopContext'
-import './CartTotal.css'
 import Title from '../Title/Title'
 
 function CartTotal() {
@@ -8,35 +7,37 @@ function CartTotal() {
 
   const subtotal = getCardAmount()
   const hasItems = getCartDta() > 0   // check cart items
-
   const total = hasItems ? subtotal + Number(delivery_fee) : 0
 
   return (
-    <div className='cart-total'>
-      <div className='cart-total-div'>
+    <div className="w-full max-w-lg mx-auto bg-white shadow-lg rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]">
+      {/* Heading */}
+      <div className="text-center mb-6">
         <Title text1={'CART'} text2={'TOTALS'} />
       </div>
-      <div className='cart-total-div-2'>
-        {/* Subtotal */}
-        <div className='cart-total-div-3'>
-          <p>SubTotal</p>
-          <p>{currency}{subtotal}.00</p>
-        </div>
-        <hr />
 
-        {/* Shipping fee sirf tab show hogi jab cart me items hon */}
+      {/* Totals Section */}
+      <div className="space-y-4">
+        {/* Subtotal */}
+        <div className="flex justify-between items-center text-gray-700 text-sm sm:text-base">
+          <p>Subtotal</p>
+          <p className="font-semibold">{currency}{subtotal}.00</p>
+        </div>
+        <hr className="border-gray-200" />
+
+        {/* Shipping fee (sirf jab cart me items hon) */}
         {hasItems && (
           <>
-            <div className='cart-total-div-4'>
+            <div className="flex justify-between items-center text-gray-700 text-sm sm:text-base">
               <p>Shipping fee</p>
-              <p>{currency}{delivery_fee}.00</p>
+              <p className="font-semibold">{currency}{delivery_fee}.00</p>
             </div>
-            <hr />
+            <hr className="border-gray-200" />
           </>
         )}
 
         {/* Total */}
-        <div className='cart-total-div-5'>
+        <div className="flex justify-between items-center text-gray-900 font-bold text-base sm:text-lg">
           <b>TOTAL</b>
           <b>{currency}{total}.00</b>
         </div>

@@ -10,15 +10,15 @@ const SearchBar = () => {
   const location = useLocation()
 
   useEffect(() => {
-    if (location.pathname.includes('/Collection') ) {
+    if (location.pathname.includes('/Collection')) {
       setVisible(true)
     } else {
       setVisible(false)
     }
-  }, [location, ShowSearch]) // 👈 ShowSearch bhi add kiya
+  }, [location, ShowSearch])
 
   return ShowSearch || visible ? (
-    <div className='search-bar-container flex items-center justify-between bg-gray-900 px-6 py-4 rounded-xl shadow-lg'>
+    <div className="search-bar-container fixed top-20 left-1/2 transform -translate-x-1/2 w-[90%] max-w-3xl flex items-center justify-between bg-gray-900 px-6 py-4 rounded-2xl shadow-2xl z-50 transition-all duration-500">
       <div className='search-bar flex items-center bg-gray-800 px-4 py-2 rounded-full w-full'>
         <input
           type="text"

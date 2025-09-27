@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./Login.css";
 import { ShopContext } from "../../context/ShopContext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -38,37 +37,62 @@ function Login() {
   }, [token]);
 
   return (
-    <form onSubmit={onSubmitHandler} className="form-1">
-      <div className="div-1">
-        <p className="p-1">Login</p>
-        <hr />
-      </div>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-4">
+      <form
+        onSubmit={onSubmitHandler}
+        className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 transform transition-all duration-500 hover:scale-[1.02]"
+      >
+        {/* Title */}
+        <div className="mb-6 text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900 tracking-wide">
+            Login
+          </h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Welcome back! Please enter your details.
+          </p>
+          <hr className="mt-4 border-gray-200" />
+        </div>
 
-      <input
-        onChange={(e) => setemail(e.target.value)}
-        value={email}
-        type="email"
-        placeholder="Email"
-        className="input-2"
-        required
-      />
+        {/* Email Input */}
+        <input
+          onChange={(e) => setemail(e.target.value)}
+          value={email}
+          type="email"
+          placeholder="Email"
+          className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300"
+          required
+        />
 
-      <input
-        onChange={(e) => setpassword(e.target.value)}
-        value={password}
-        type="Password"
-        placeholder="Password"
-        className="input-3"
-        required
-      />
+        {/* Password Input */}
+        <input
+          onChange={(e) => setpassword(e.target.value)}
+          value={password}
+          type="password"
+          placeholder="Password"
+          className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300"
+          required
+        />
 
-      <div className="div-2">
-        <p className="p-2">FORGOT YOUR PASSWORD</p>
-        <p onClick={() => navigate('/signup')}>create new account</p>
-      </div>
+        {/* Forgot Password + Signup */}
+        <div className="flex justify-between items-center text-sm text-indigo-600 mb-6">
+          <p className="cursor-pointer hover:underline">Forgot your password?</p>
+          <p
+            onClick={() => navigate("/signup")}
+            className="cursor-pointer hover:underline"
+          >
+            Create new account
+          </p>
+        </div>
 
-      <button className="bt-3" type="submit">Login</button>
-    </form>
+        {/* Login Button */}
+        <button
+          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-500 font-semibold"
+          type="submit"
+        >
+          Login
+        </button>
+      </form>
+    </div>
   );
 }
 
