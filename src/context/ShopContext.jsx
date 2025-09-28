@@ -3,10 +3,10 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // pehle localhost tha
-const BASE_URL = "http://localhost:4000";
+// const BASE_URL = "http://localhost:4000";
 
 // ab backend live URL set karo
-// const BASE_URL = "https://e-commerce-backendd-4wbh.vercel.app/";
+const BASE_URL = "https://e-commerce-backendd-4wbh.vercel.app/";
 
 export const ShopContext = createContext();
 
