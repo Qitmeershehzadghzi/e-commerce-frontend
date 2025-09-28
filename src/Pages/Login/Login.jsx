@@ -12,7 +12,7 @@ function Login() {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(backendUrl + "/user/login", {
+      const response = await axios.post(backendUrl + "/api/user/login", {
         email,
         password,
       });

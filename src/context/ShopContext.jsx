@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // pehle localhost tha
 // const BASE_URL = "http://localhost:4000";
-
+// 
 // ab backend live URL set karo
 const BASE_URL = "https://e-commerce-backendd-4wbh.vercel.app/";
 
@@ -45,7 +45,7 @@ const ShopContextProvider = (props) => {
     if (token) {
       try {
         axios.post(
-          backendUrl + "/cart/add",
+          backendUrl + "/api/cart/add",
           { itemId, size },
           { headers: { token } }
         );
@@ -77,7 +77,7 @@ const ShopContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(
-          backendUrl + "/cart/update",
+          backendUrl + "/api/cart/update",
           { itemId, size, quantity },
           { headers: { token } }
         );
@@ -108,7 +108,7 @@ const ShopContextProvider = (props) => {
   // ✅ Fetch products from backend
   const getProductsData = async () => {
     try {
-      const response = await axios.get(backendUrl + "/product/list");
+      const response = await axios.get(backendUrl + "/api/product/list");
 
       if (response.data.success) {
         setproducts(response.data.productss); // ✅ spelling fix
@@ -125,7 +125,7 @@ const ShopContextProvider = (props) => {
   const getUserCart = async (token) => {
     try {
       const response = await axios.post(
-        backendUrl + "/cart/get",
+        backendUrl + "/api/cart/get",
         {},
         { headers: { token } }
       );

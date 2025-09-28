@@ -53,7 +53,7 @@ function PlaceOrder() {
 
       switch (method) {
         case "cod":
-          const response = await axios.post(backendUrl + "/order/place", orderData, {
+          const response = await axios.post(backendUrl + "/api/order/place", orderData, {
             headers: { token },
           });
           if (response.data.success) {
@@ -65,7 +65,7 @@ function PlaceOrder() {
           break;
         case "stripe":
           const responseStripe = await axios.post(
-            backendUrl + "/order/stripe",
+            backendUrl + "/api/order/stripe",
             {
               ...orderData,
               origin: window.location.origin,
