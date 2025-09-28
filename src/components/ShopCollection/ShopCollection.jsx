@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../../context/ShopContext';
 import Title from '../Title/Title';
-import ProductItem from '../ProductItem/ProductItem';
+import ProductItem from '../productItem';
 
 function ShopCollection() {
   const { products } = useContext(ShopContext);
