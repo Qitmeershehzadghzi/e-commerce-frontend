@@ -19,7 +19,7 @@ const Verify = () => {
 
       const response = await axios.post(
         backendUrl + '/api/order/verifyStripe',
-        { success, orderId, userId },
+        {  orderId, userId },
         { headers: { token } }
       );
 
