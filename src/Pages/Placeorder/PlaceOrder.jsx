@@ -74,7 +74,7 @@ function PlaceOrder() {
           );
 
           if (responseStripe.data.success) {
-            window.location.replace(responseStripe.data.session_url);
+            window.location.replace(responseStripe.data.success_url);
           } else {
             toast.error(responseStripe.data.message);
           }
